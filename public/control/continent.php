@@ -6,6 +6,7 @@ class continent {
     public function __construct($localHost, $name, $password, $dbname) {
         
         try {
+            $dbname = new Database();
             $dns = "mysql:host={$this->localhost};dbname={$this->dbname}";
             $this->connect = new pdo($dns, $this->name, $this->password);
             $this->connect->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
@@ -21,27 +22,26 @@ class continent {
     }
 
     public function createContinent($name, $num_countries) {
-        $insert_sql = "INSERT INTO continent (nom, nombre, continent) VALUES (:nom, :nombre, :continent)";
-        $stmt = $this->connect->prepare($continent_sql);
-        $stmt->bindParam(":nom", $nom; ":conitnent", $continent_id);
-        $stmt->bindParam('');
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function update() {
-        $update_sql = "UPDATE continent SET";
-        $stmt = $this->connect->prepare($update_sql);
-        $stmt->bindParam();
+        $insert_sql = "INSERT INTO continent (`nom_continent`, `nombre_de_pays`) VALUES (':nom', ':nombre')";
+        $stmt = $this->connect->prepare($insert_sql);
+        $stmt->bindParam(':nom', $name);
+        $stmt->bindParam(':nombre', $num_countries);
         return $stmt->execute();
     }
 
-    public function delete() {
-        $delete_sql = "DELELTE FROM continent WHERE";
+    public function update($id_continent, $name, $num_continent) {
+        $update_sql = "UPDATE continent SET `nom_continent` = :name, `nombre_du_pays` = :nombre WHERE id = :id";
+        $stmt = $this->connect->prepare($update_sql);
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":nombre", $num_continent, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $id_continent, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function delete($id_continent) {
+        $delete_sql = "DELELTE FROM continent WHERE id = :id";
         $stmt = $this->connect->prepare($delete_sql);
-        $stmt->bindParam();
+        $stmt->bindParam(":id", $id_continent, PDO::PARAM_INT);
         return $stmt->execute();
     }
 }
-
-$afriqua = new continent();
-$afriqua
