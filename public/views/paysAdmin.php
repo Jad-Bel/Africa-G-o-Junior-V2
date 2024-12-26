@@ -14,8 +14,7 @@
                 <span class="text-2xl font-semibold text-white">Africa Gio</span>
             </a>
             <ul class="flex space-x-4">
-                <li><a href="#" class="text-white hover:text-green-200">Home</a></li>
-                <li><a href="#" class="text-white hover:text-green-200">Ajouter</a></li>
+                <li><a href="#" class="text-white hover:text-green-200">log-out</a></li>
             </ul>
         </div>
     </nav>
@@ -27,19 +26,19 @@
                 <h1 class="text-xl font-semibold text-gray-800">Navigation</h1>
             </div>
             <nav class="mt-6">
-                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-700">
+                <a href="../views/continentAdmin.php" class="flex items-center px-6 py-3 text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-700">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                     </svg>
                     Continent
                 </a>
-                <a href="#" class="flex items-center px-6 py-3 bg-green-600 text-white">
+                <a href="../views/paysAdmin.php" class="flex items-center px-6 py-3 bg-green-600 text-white">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
                     Pays
                 </a>
-                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-500">
+                <a href="../views/villeAdmin.php" class="flex items-center px-6 py-3 text-gray-600 hover:bg-green-600 hover:text-white transition-all duration-500">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                     </svg>
@@ -79,11 +78,11 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">206,139,589</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Africa</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-blue-400 text-sm font-medium text-black bg-white hover:bg-blue-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                            Edit
+                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
+                                            Modifier
                                         </a>
                                         <a href="#" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                            Delete
+                                            Supprimer
                                         </a>
                                     </td>
                                 </tr>
@@ -93,11 +92,11 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">59,308,690</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Africa</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-blue-400 text-sm font-medium text-black bg-white hover:bg-blue-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                            Edit
+                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
+                                            Modifier
                                         </a>
                                         <a href="#" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                            Delete
+                                            Supprimer
                                         </a>
                                     </td>
                                 </tr>
