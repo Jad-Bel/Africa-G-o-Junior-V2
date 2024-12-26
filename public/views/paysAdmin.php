@@ -59,7 +59,7 @@
                 <!-- Countries Table -->
                 <div class="bg-white shadow-xl mb-8">
                     <div class="px-6 py-4 border-b border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-800">Countries Management</h3>
+                        <h3 class="text-lg font-semibold text-gray-800">Management des Pays</h3>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full">
@@ -109,20 +109,15 @@
                 <!-- Add New Country Form -->
                 <div class="bg-white shadow-xl">
                     <div class="p-6 border-b">
-                        <h2 class="text-xl font-semibold">Add New Country</h2>
+                        <h2 class="text-xl font-semibold">Ajouter un Pays</h2>
                     </div>
                     <div class="p-6">
                         <form class="space-y-6" method="POST" action="pays-admin.html">
                             <input type="hidden" name="country_id" value="1">
 
                             <div>
-                                <label class="block text-sm font-medium text-gray-700" for="countryName">Country Name</label>
+                                <label class="block text-sm font-medium text-gray-700" for="countryName">Nom du Pays</label>
                                 <input type="text" name="countryName" id="countryName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700" for="capital">Capital</label>
-                                <input type="text" name="capital" id="capital" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
                             </div>
 
                             <div>
@@ -134,18 +129,7 @@
                                 <label class="block text-sm font-medium text-gray-700" for="continent">Continent</label>
                                 <select name="continent" id="continent" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
                                     <option value="africa">Africa</option>
-                                    <option value="europe">Europe</option>
-                                    <option value="asia">Asia</option>
-                                    <option value="north_america">North America</option>
-                                    <option value="south_america">South America</option>
-                                    <option value="australia">Australia</option>
-                                    <option value="antarctica">Antarctica</option>
                                 </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700" for="description">Description</label>
-                                <textarea rows="3" name="description" id="description" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"></textarea>
                             </div>
                             
                             <div class="flex justify-end space-x-3">
