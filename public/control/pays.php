@@ -6,20 +6,14 @@ class Pays {
 
     private $connect;
 
-    // public function __construct() {
-    //     $pdo = new Database();
-    //     $this->connect = $pdo->getDatabase();
-    // }
-
     public function __construct() {
         try {
             $db = new Database();
             $this->connect =  $db->getdatabase();
         //    var_dump($connect);
-        echo "1";
         } catch (PDOException $error) {
             // echo "Erreur de connexion";
-            echo "3" . $error->getMessage();
+            echo "Connection failed: " . $error->getMessage();
         }
     }
 
@@ -40,10 +34,10 @@ class Pays {
                            VALUES (:nom_pays, :population, :language, :continent)";
             $stmt = $this->connect->prepare($insert_sql);
 
-            $stmt->bindValue(':nom_pays', $nom_pays);
-            $stmt->bindValue(':population', $population);
-            $stmt->bindValue(':language', $language);
-            $stmt->bindValue(':continent', $id_continent);
+            $stmt->bindParam(':nom_pays', $nom_pays);
+            $stmt->bindParam(':population', $population);
+            $stmt->bindParam(':language', $language);
+            $stmt->bindParam(':continent', $id_continent);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -54,16 +48,16 @@ class Pays {
     public function updatePays($id_pays, $nom_pays, $population, $language, $id_continent) {
         try {
             $update_sql = "UPDATE pays 
-                           SET nom_pays = :nom_pays, POPULATION = :population, 
-                               LANGUAGE_PAYS = :language, ID_CONTINENT = :continent 
-                           WHERE id_pays = :id";
+                        SET nom_pays = :nom_pays, POPULATION = :population, 
+                        LANGUAGE_PAYS = :language, ID_CONTINENT = :continent 
+                        WHERE id_pays = :id";
             $stmt = $this->connect->prepare($update_sql);
 
-            $stmt->bindValue(':id', $id_pays, PDO::PARAM_INT);
-            $stmt->bindValue(':nom_pays', $nom_pays);
-            $stmt->bindValue(':population', $population);
-            $stmt->bindValue(':language', $language);
-            $stmt->bindValue(':continent', $id_continent);
+            $stmt->bindParam(':id', $id_pays, PDO::PARAM_INT);
+            $stmt->bindParam(':nom_pays', $nom_pays);
+            $stmt->bindParam(':population', $population);
+            $stmt->bindParam(':language', $language);
+            $stmt->bindParam(':continent', $id_continent);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -76,7 +70,7 @@ class Pays {
             $delete_sql = "DELETE FROM pays WHERE id_pays = :id";
             $stmt = $this->connect->prepare($delete_sql);
 
-            $stmt->bindValue(":id", $id_pays, PDO::PARAM_INT);
+            $stmt->bindParam(":id", $id_pays, PDO::PARAM_INT);
 
             return $stmt->execute();
         } catch (PDOException $e) {
@@ -85,7 +79,7 @@ class Pays {
     }
 }
 
-$data = new Pays();
-$result = $data->readPays();
+// $data = new Pays();
+// $result = $data->readPays();
 
-var_dump($result);
+// var_dump($result);
