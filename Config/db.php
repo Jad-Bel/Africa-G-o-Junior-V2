@@ -13,9 +13,9 @@
             $dns = "mysql:host={$this->localHost};dbname={$this->dbname};charset=utf8";
             $this->connect = new PDO($dns,$this->name,$this->password);
             $this->connect->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-            // echo 'connect susses';
+            echo 'connect susses';
            } catch (PDOException) {
-            // echo 'errure de connection';
+            echo 'errure de connection';
            }
            return $this->connect;
         }

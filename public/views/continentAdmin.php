@@ -101,6 +101,10 @@
                 </div>
 
                 <!-- continent Table -->
+                 <!-- <?php
+
+
+                 ?> -->
                 <div class="bg-white shadow-xl mb-8">
                     <div class="px-6 py-4 border-b border-gray-100">
                         <h3 class="text-lg font-semibold text-gray-800">Continent Table</h3>
@@ -144,7 +148,7 @@
                     <h2 class="text-xl font-semibold">Add New Menu</h2>
                 </div>
                 <div class="p-6">
-                    <form class="space-y-6" method="POST" action="menusAdmin.html">
+                    <form class="space-y-6" method="POST" action="../control/ContinentController.php">
                         <input type="hidden" name="menu_id" value="1">
 
                         <!-- Error Message Placeholder -->

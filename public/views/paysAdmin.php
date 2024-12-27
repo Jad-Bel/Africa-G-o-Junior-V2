@@ -86,20 +86,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">South Africa</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Pretoria</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">59,308,690</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Africa</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
-                                            Modifier
-                                        </a>
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                            Supprimer
-                                        </a>
-                                    </td>
-                                </tr>
+                               
                             </tbody>
                         </table>
                     </div>
