@@ -23,6 +23,36 @@ class pays{
             return "Erreur : ";
         }
     }
+
+    public function addPays($nom_pays, $population, $language, $id_continent) {
+        try {
+            $insert_sql = "INSERT INTO pays (`nom_pays`, `POPULATION`, `LANGUAGE_PAYS`, `ID_CONTINENT`) VALUES (':nom', ':population', ':language', ':continent')";
+            $stmt = $this->connect->prepare($insert_sql);
+            $stmt->bindParam(':nom_pays', $nom_pays);
+            $stmt->bindParam(':population', $population);
+            $stmt->bindParam(':language', $language);
+            $stmt->bindParam(':continent', $id_continent);
+            return $stmt->execute();
+        }
+    }
+
+    public function updatePays ($id_pays, $nom_pays, $population, $language, $id_continent) {
+        try {
+            $insert_sql = "UPDATE pays SET `nom_pays` = ':nom', `POPULATION` = ':population', `LANGUAGE_PAYS` = ':language', `ID_CONTINENT` = ':continent' WHERE id_pays = :id";
+            $stmt = $this->connect->prepare($insert_sql);
+            $stmt->bindParam(':id', $id_pays);
+            $stmt->bindParam(':nom_pays', $nom_pays);
+            $stmt->bindParam(':population', $population);
+            $stmt->bindParam(':language', $language);
+            $stmt->bindParam(':continent', $id_continent);
+            return $stmt->execute();
+        } 
+    }
+
+    public function deletePays ($id_pays) {
+        $delete_sql = "DELETE FROM pays WHERE id_pays = :id";
+        
+    }
 }
 
 $data = new pays();
