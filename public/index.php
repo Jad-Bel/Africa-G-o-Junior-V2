@@ -1,3 +1,12 @@
+<?php 
+require "./control/pays.php";
+
+$pays = new pays();
+$pays = $pays->readPays();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,58 +41,21 @@
         <h2 class="text-3xl font-bold text-center mb-12">Pays</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Country Card 1 -->
+            <?php 
+                    foreach($pays as $row){
+                    ?>
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="/placeholder.svg?height=200&width=400" alt="Country Image" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-2">Nigeria</h3>
-                    <p><strong>Population:</strong> 206 million</p>
-                    <p><strong>Langue:</strong> English</p>
+                                <div class="p-6">
+                 
+                    <h3 class="text-xl font-semibold mb-2"><?= htmlspecialchars($row['nom_pays']) ?></h3>
+                    <p><strong>Population:</strong><?= htmlspecialchars($row['POPULATION']) ?></p>
+                    <p><strong>Langue:</strong> <?= htmlspecialchars($row['LANGAUGE_PAYS']) ?></p>
                     <p><strong>Continent:</strong> Africa</p>
-                    <p><strong>Best Food:</strong> Jollof Rice</p>
-                    <p><strong>Capitale:</strong> Abuja</p>
-                    <div class="mt-4 flex justify-between">
-                        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Modifier</button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Supprimer</button>
-                    </div>
+                   
                 </div>
             </div>
-
-            <!-- Country Card 2 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="/placeholder.svg?height=200&width=400" alt="Country Image" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-2">South Africa</h3>
-                    <p><strong>Population:</strong> 59 million</p>
-                    <p><strong>Langue:</strong> 11 official languages</p>
-                    <p><strong>Continent:</strong> Africa</p>
-                    <p><strong>Best Food:</strong> Bobotie</p>
-                    <p><strong>Capitale:</strong> Pretoria, Cape Town, Bloemfontein</p>
-                    <div class="mt-4 flex justify-between">
-                        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Modifier</button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Supprimer</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Country Card 3 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="/placeholder.svg?height=200&width=400" alt="Country Image" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-2">Egypt</h3>
-                    <p><strong>Population:</strong> 102 million</p>
-                    <p><strong>Langue:</strong> Arabic</p>
-                    <p><strong>Continent:</strong> Africa</p>
-                    <p><strong>Best Food:</strong> Koshari</p>
-                    <p><strong>Capitale:</strong> Cairo</p>
-                    <div class="mt-4 flex justify-between">
-                        <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Modifier</button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Supprimer</button>
-                    </div>
-                </div>
-            </div>
+            <?php }?>
         </div>
-    </main>
-
     <footer class="bg-green-800 text-white py-8 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p>&copy; 2023 Africa Gio. All rights reserved.</p>

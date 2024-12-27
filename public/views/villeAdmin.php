@@ -111,7 +111,7 @@
                         <h2 class="text-xl font-semibold">Ajouter une Ville</h2>
                     </div>
                     <div class="p-6">
-                        <form class="space-y-6" method="POST" action="villes-admin.html">
+                        <form class="space-y-6" method="POST" action="">
                             <input type="hidden" name="city_id" value="1">
 
                             <div>
