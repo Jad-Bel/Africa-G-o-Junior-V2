@@ -1,3 +1,64 @@
+<?php 
+// require "../control/pays.php";
+// $pays = new Pays();
+// var_dump($pays);
+// $pays = $pays->readPays();
+
+//  if ($_SERVER["REQUEST_METHOD"] == 'POST'  && isset($_POST['save_country'])) {
+   
+    
+//         echo htmlspecialchars($_POST['countryName']) . '<br>';
+//         echo htmlspecialchars($_POST['population']) . '<br>';
+//         echo htmlspecialchars($_POST['continent']) . '<br>';
+    
+        
+//         $result = $pays->addPays(
+//             $_POST['countryName'],  
+//             $_POST['population'],         
+//             $_POST['continent'],   
+//             $_POST['language']   );
+    
+        
+//         echo $result ? "ok" :"errur";
+//     }
+
+// if (isset($_POST['Supprimer'])) {
+//     $id = $_POST['supr'];
+// var_dump($id);
+//    $result = $pays->deletePays($id_pays);
+// }
+ 
+?>
+
+<?php
+require_once "../control/pays.php"; 
+$pays = new Pays(); 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['save_country'])) {
+        $nom_pays = $_POST['countryName'];
+        $population = $_POST['population'];
+        $language = $_POST['language'];
+        $continent = $_POST['continent']; 
+
+        $result = $pays->addPays($nom_pays, $population, $language, $continent);
+
+        $message = $result ? "Pays ajouté avec succès!" : "Erreur lors de l'ajout du pays.";
+    }
+
+    if (isset($_POST['Supprimer'])) {
+        $id = $_POST['supr']; 
+        $result = $pays->deletePays($id);
+        $message = $result ? "Pays supprimé avec succès!" : "Erreur lors de la suppression du pays.";
+    }
+}
+
+$paysList = $pays->readPays(); 
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,28 +126,46 @@
                             <thead class="bg-gray-50 border-b border-gray-100">
                                 <tr>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Country Name</th>
-                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Capital</th>
+                                   
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Population</th>
+                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">langauge</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Continent</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
+                            <?php 
+                            foreach($pays as $row){
+
+                                
+                            ?>
                             <tbody class="divide-y divide-gray-100">
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Nigeria</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Abuja</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">206,139,589</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($row['nom_pays']) ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= htmlspecialchars($row['POPULATION']) ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"> <?= htmlspecialchars($row['LANGAUGE_PAYS']) ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Africa</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2 flex">
+                                        <!-- <form action="" method="POST">
+                                            <input type="hidden" value=" <?= htmlspecialchars($row['id_pays']) ?>" name="modifer">
+                                        <button type="submit" name="Modifier" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
                                             Modifier
-                                        </a>
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                            Supprimer
-                                        </a>
+                                        </button>
+                                        </form> -->
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="supr" value="<?= $row['id_pays'] ?>">
+                                        <button type="submit" name="Supprimer" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium text-black bg-white hover:bg-red-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600">
+                                        Supprimer
+                                        </button>
+                                        </form>
                                     </td>
                                 </tr>
-                               
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">South Africa</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Pretoria</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">59,308,690</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Africa</td>
+                                   
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -98,8 +177,8 @@
                         <h2 class="text-xl font-semibold">Ajouter un Pays</h2>
                     </div>
                     <div class="p-6">
-                        <form class="space-y-6" method="POST" action="pays-admin.html">
-                            <input type="hidden" name="country_id" value="1">
+                        <form class="space-y-6" method="POST" action="">
+                            <!-- <input type="hidden" name="country_id" value="1"> -->
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="countryName">Nom du Pays</label>
@@ -112,14 +191,19 @@
                             </div>
 
                             <div>
+                                <label class="block text-sm font-medium text-gray-700" for="population">language</label>
+                                <input type="text" name="language" id="population" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                            </div>
+
+                            <div>
                                 <label class="block text-sm font-medium text-gray-700" for="continent">Continent</label>
                                 <select name="continent" id="continent" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                                    <option value="africa">Africa</option>
+                                    <option value="1">Africa</option>
                                 </select>
                             </div>
                             
                             <div class="flex justify-end space-x-3">
-                                <button type="submit" class="px-4 py-2 bg-white text-black hover:text-white hover:bg-green-600 hover:transition-all duration-500">
+                                <button type="submit" name='save_country' class="px-4 py-2 bg-white text-black hover:text-white hover:bg-green-600 hover:transition-all duration-500">
                                     Save Country
                                 </button>
                             </div>

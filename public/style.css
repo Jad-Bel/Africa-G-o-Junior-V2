@@ -1186,6 +1186,11 @@ video {
   --tw-ring-color: rgb(22 163 74 / var(--tw-ring-opacity, 1));
 }
 
+.focus\:ring-red-600:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity, 1));
+}
+
 .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px;
 }
