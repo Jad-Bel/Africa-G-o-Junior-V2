@@ -1,63 +1,79 @@
 <?php
 
-require_once __DIR__ .'/../Config/db.php';
+require_once __DIR__ . '/../Config/db.php';
 
-class pays{
+class Pays {
 
- private $nom_pays;
-    private $POPULATION;
-    private $LANGAUGE_PAYS;
-    private $ID_CONTINENT ;
     private $connect;
 
-    public function __construct(){
+    public function __construct() {
         $pdo = new Database();
-        $this->connect = $pdo->getdatabase();
+        $this->connect = $pdo->getDatabase();
     }
+
     public function readPays() {
         try {
             $sql = "SELECT * FROM pays";
             $stmt = $this->connect->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException) {
-            return "Erreur : ";
+        } catch (PDOException $e) {
+
+            return "Erreur : " . $e->getMessage();
         }
     }
 
     public function addPays($nom_pays, $population, $language, $id_continent) {
         try {
-            $insert_sql = "INSERT INTO pays (`nom_pays`, `POPULATION`, `LANGUAGE_PAYS`, `ID_CONTINENT`) VALUES (':nom', ':population', ':language', ':continent')";
+            $insert_sql = "INSERT INTO pays (nom_pays, POPULATION, LANGUAGE_PAYS, ID_CONTINENT) 
+                           VALUES (:nom_pays, :population, :language, :continent)";
             $stmt = $this->connect->prepare($insert_sql);
-            $stmt->bindParam(':nom_pays', $nom_pays);
-            $stmt->bindParam(':population', $population);
-            $stmt->bindParam(':language', $language);
-            $stmt->bindParam(':continent', $id_continent);
+
+            $stmt->bindValue(':nom_pays', $nom_pays);
+            $stmt->bindValue(':population', $population);
+            $stmt->bindValue(':language', $language);
+            $stmt->bindValue(':continent', $id_continent);
+
             return $stmt->execute();
+        } catch (PDOException $e) {
+            return "Erreur : " . $e->getMessage();
         }
     }
 
-    public function updatePays ($id_pays, $nom_pays, $population, $language, $id_continent) {
+    public function updatePays($id_pays, $nom_pays, $population, $language, $id_continent) {
         try {
-            $insert_sql = "UPDATE pays SET `nom_pays` = ':nom', `POPULATION` = ':population', `LANGUAGE_PAYS` = ':language', `ID_CONTINENT` = ':continent' WHERE id_pays = :id";
-            $stmt = $this->connect->prepare($insert_sql);
-            $stmt->bindParam(':id', $id_pays);
-            $stmt->bindParam(':nom_pays', $nom_pays);
-            $stmt->bindParam(':population', $population);
-            $stmt->bindParam(':language', $language);
-            $stmt->bindParam(':continent', $id_continent);
+            $update_sql = "UPDATE pays 
+                           SET nom_pays = :nom_pays, POPULATION = :population, 
+                               LANGUAGE_PAYS = :language, ID_CONTINENT = :continent 
+                           WHERE id_pays = :id";
+            $stmt = $this->connect->prepare($update_sql);
+
+            $stmt->bindValue(':id', $id_pays, PDO::PARAM_INT);
+            $stmt->bindValue(':nom_pays', $nom_pays);
+            $stmt->bindValue(':population', $population);
+            $stmt->bindValue(':language', $language);
+            $stmt->bindValue(':continent', $id_continent);
+
             return $stmt->execute();
-        } 
+        } catch (PDOException $e) {
+            return "Erreur : " . $e->getMessage();
+        }
     }
 
-    public function deletePays ($id_pays) {
-        $delete_sql = "DELETE FROM pays WHERE id_pays = :id";
-        $stmt = $this->connect->prepare($delete_sql);
-        $stmt->bindParam(":id", $id_pays, PDO::PARAM_INT);
-        return $stmt->execute();
+    public function deletePays($id_pays) {
+        try {
+            $delete_sql = "DELETE FROM pays WHERE id_pays = :id";
+            $stmt = $this->connect->prepare($delete_sql);
+
+            $stmt->bindValue(":id", $id_pays, PDO::PARAM_INT);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            return "Erreur : " . $e->getMessage();
+        }
     }
 }
 
-$data = new pays();
-$data = $data->readPays();
+$data = new Pays();
+$result = $data->readPays();
 
-var_dump($data);
+var_dump($result);
