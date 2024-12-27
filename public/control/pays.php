@@ -29,10 +29,11 @@ class Pays {
 
     public function addPays($nom_pays, $population, $language, $id_continent) {
         try {
-            $insert_sql = "INSERT INTO pays (nom_pays, POPULATION, LANGUAGE_PAYS, ID_CONTINENT) 
+            $insert_sql = "INSERT INTO pays (nom_pays, POPULATION, LANGAUGE_PAYS, ID_CONTINENT) 
                            VALUES (:nom_pays, :population, :language, :continent)";
             $stmt = $this->connect->prepare($insert_sql);
 
+            
             $stmt->bindParam(':nom_pays', $nom_pays);
             $stmt->bindParam(':population', $population);
             $stmt->bindParam(':language', $language);
@@ -48,7 +49,7 @@ class Pays {
         try {
             $update_sql = "UPDATE pays 
                         SET nom_pays = :nom_pays, POPULATION = :population, 
-                        LANGUAGE_PAYS = :language, ID_CONTINENT = :continent 
+                        LANGAUGE_PAYS = :language, ID_CONTINENT = :continent 
                         WHERE id_pays = :id";
             $stmt = $this->connect->prepare($update_sql);
 
@@ -78,7 +79,14 @@ class Pays {
     }
 }
 
-// $data = new Pays();
-// $result = $data->readPays();
+// $id = 41;
+// $nom = 'france';
+//             $population = 11380000;
+//             $language = 'frnacais';
+//             $conitnent = 1;
 
-// var_dump($result);
+// $data = new Pays();
+// $result = $data->deletePays(41);
+
+// // var_dump($result);
+// echo $result;
