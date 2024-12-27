@@ -4,7 +4,7 @@
     {
         private $localHost = 'localhost';
         private $name = 'root';
-        private $password = '';
+        private $password = 'Hitler20.';
         private $dbname = 'AFRICA_Geo';
         private $connect;
         public function getdatabase()

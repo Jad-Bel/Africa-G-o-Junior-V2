@@ -1,14 +1,26 @@
 <?php
 
-require_once __DIR__ . '/../Config/db.php';
+require_once(__DIR__ . '/../../Config/db.php');
 
 class Pays {
 
     private $connect;
 
+    // public function __construct() {
+    //     $pdo = new Database();
+    //     $this->connect = $pdo->getDatabase();
+    // }
+
     public function __construct() {
-        $pdo = new Database();
-        $this->connect = $pdo->getDatabase();
+        try {
+            $db = new Database();
+            $this->connect =  $db->getdatabase();
+        //    var_dump($connect);
+        echo "1";
+        } catch (PDOException $error) {
+            // echo "Erreur de connexion";
+            echo "3" . $error->getMessage();
+        }
     }
 
     public function readPays() {
