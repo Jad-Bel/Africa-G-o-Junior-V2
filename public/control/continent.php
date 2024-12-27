@@ -6,10 +6,9 @@ class continent {
     public function __construct($localHost, $name, $password, $dbname) {
         
         try {
-            $dbname = new Database();
-            $dns = "mysql:host={$this->localhost};dbname={$this->dbname}";
-            $this->connect = new pdo($dns, $this->name, $this->password);
-            $this->connect->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
+            $db = new Database();
+           $connect =  $db->getdatabase();
+           var_dump($connect);
         } catch (PDOException) {
             echo "Erreur de connexion";
         }
@@ -45,3 +44,4 @@ class continent {
         return $stmt->execute();
     }
 }
+
