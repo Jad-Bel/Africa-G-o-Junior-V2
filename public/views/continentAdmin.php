@@ -1,3 +1,29 @@
+<?php 
+require __DIR__. "/../../CONTROLLER/continent.php";
+
+require __DIR__."/../../CONTROLLER/user.php";
+require __DIR__."/../../CONTROLLER/Admin.php";
+
+$admin = new Admin();
+
+
+$user = new User();
+
+$user = $user->readUser();
+
+
+
+$continent = new continent();
+
+$continent = $continent->readAll();
+
+if (isset($_POST['delet'])) {
+    $id = $_POST['id'];
+
+    $admin->deletuser($id);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,33 +93,31 @@
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Telephone</th>
-                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
                                     <th class="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jane Smith</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">jane@example.com</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">+212-6933-05050</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Admin</td>
+                                    <?php 
+                                    foreach($user as $row){
+                                        if ($row['id_role'] == 2) {
+                                           
+                                        
+                                    ?>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($row['name_utilisateur']) ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= htmlspecialchars($row['Email']) ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= htmlspecialchars($row['telephone']) ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <button disabled class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium text-gray-400 bg-gray-100 cursor-not-allowed">
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                        <button type="submit" name="delet" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium text-gray-400 bg-gray-100 ">
                                             Delete User
                                         </button>
+                                        </form>
+                                       
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Admin User</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">admin@example.com</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">+212-6206-01673</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Eleve</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium text-black bg-white hover:bg-red-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                            Delete User
-                                        </a>
-                                    </td>
-                                </tr>
+                                <?php } } ?>
                                 <!-- More user rows would go here -->
                             </tbody>
                         </table>
@@ -114,28 +138,19 @@
                             <thead class="bg-gray-50 border-b border-gray-100">
                                 <tr>
                                     <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Continent Nom</th>
-                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Menu</th>
-                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
-                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">numbre de pays</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">John Doe</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Menu A</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">123 Main St...</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">2023-05-15</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Waiting for approval</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
-                                            Modifier
-                                        </a>
-                                        <a href="#" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium text-black bg-white hover:bg-red-700 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                            Supprimer
-                                        </a>
-                                    </td>
+
+                                <?php 
+                                foreach($continent as $row){
+                                ?>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= $row['nom_continent'] ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= $row['nombre_de_pays'] ?></td>
+
+                                    <?php } ?>
                                 </tr>
                                 <!-- More reservation rows would go here -->
                             </tbody>
@@ -143,57 +158,7 @@
                     </div>
                 </div>
 
-            <div class="bg-white shadow-xl">
-                <div class="p-6 border-b">
-                    <h2 class="text-xl font-semibold">Add New Menu</h2>
-                </div>
-                <div class="p-6">
-                    <form class="space-y-6" method="POST" action="../control/ContinentController.php">
-                        <input type="hidden" name="menu_id" value="1">
-
-                        <!-- Error Message Placeholder -->
-                        <!--
-                        <div class="bg-red-500 flex items-center justify-center border-2 border-red-300 rounded-lg p-1">
-                            <strong>Error message goes here</strong>
-                        </div>
-                        -->
-
-                        <!-- Success Message Placeholder -->
-                        <!--
-                        <div class="bg-green-500 mb-4 flex items-center justify-center border-2 border-green-300 rounded-lg p-1">
-                            <strong>Success message goes here</strong>
-                        </div>
-                        -->
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700" for="menuName">Menu Name</label>
-                            <input type="text" name="menuName" id="menuName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700" for="menuPrice">Price (EUR)</label>
-                            <input type="number" name="menuPrice" id="menuPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700" for="menuDescription">Description</label>
-                            <textarea rows="3" name="menuDescription" id="menuDescription" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"></textarea>
-                        </div>
-                        
-                        <div class="flex justify-end space-x-3">
-                            <button type="submit" class="px-4 py-2 bg-white text-black hover:text-white hover:bg-zinc-700 hover:transition-all duration-500">
-                                Save Menu
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-                
-            </div>
-        </main>
-    </div>
-
+            
     <!-- Footer -->
     <footer class="bg-green-800 text-white py-8 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
