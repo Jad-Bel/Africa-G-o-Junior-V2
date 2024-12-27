@@ -20,3 +20,5 @@
            return $this->connect;
         }
     }
+
+    // pdo("mysql:host=localhost ;dbname=", )
