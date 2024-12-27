@@ -1,16 +1,17 @@
 <?php 
 
+require_once(__DIR__ . '/../../Config/db.php');
+
 class continent {
     private $connect;
 
-    public function __construct($localHost, $name, $password, $dbname) {
+    public function __construct() {
         
         try {
             $db = new Database();
-           $connect =  $db->getdatabase();
-           var_dump($connect);
-        } catch (PDOException) {
-            echo "Erreur de connexion";
+           $this->connect =  $db->getdatabase();
+        } catch (PDOException $error) {
+            echo "Connection failed: " . $error->getMessage();
         }
     }
 
@@ -45,3 +46,7 @@ class continent {
     }
 }
 
+$data = new continent();
+$result = $data->readAll();
+
+var_dump($result);
