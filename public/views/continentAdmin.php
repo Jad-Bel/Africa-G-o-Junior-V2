@@ -36,11 +36,11 @@ if (isset($_POST['delet'])) {
 <nav class="bg-green-600 p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3">
-                <img src="/placeholder.svg?height=48&width=48" alt="Africa Gio Logo" class="w-12 h-12">
+                <img src="../../src/img/logo.png" alt="Africa Gio Logo" class="w-12 h-12">
                 <span class="text-2xl font-semibold text-white">Africa Gio</span>
             </a>
             <ul class="flex space-x-4">
-                <li><a href="#" class="text-white hover:text-green-200">lo-gout</a></li>
+                <li><a href="./login.php" class="text-white hover:text-green-200">log-out</a></li>
             </ul>
         </div>
     </nav>

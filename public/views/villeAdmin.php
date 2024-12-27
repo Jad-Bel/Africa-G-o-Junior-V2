@@ -78,11 +78,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'  && isset($_GET['Modifier'])) {
     <nav class="bg-green-600 p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3">
-                <img src="/placeholder.svg?height=48&width=48" alt="Logo Africa Gio" class="w-12 h-12">
+                <img src="../../src/img/logo.png" alt="Logo Africa Gio" class="w-12 h-12">
                 <span class="text-2xl font-semibold text-white">Africa Gio</span>
             </a>
             <ul class="flex space-x-4">
-                <li><a href="#" class="text-white hover:text-green-200">log-out</a></li>
+                <li><a href="./login.php" class="text-white hover:text-green-200">log-out</a></li>
             </ul>
         </div>
     </nav>
@@ -146,7 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'  && isset($_GET['Modifier'])) {
                                 <tr class="hover:bg-gray-50">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($Ville['nom_ville']) ?></td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= htmlspecialchars($Ville['description']) ?></td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2 ">
+                                            <div class="flex gap-3">
                                             <form action="" method="GET">
                                                 <input type="hidden" name="id_ville" value="<?= $Ville['id_ville'] ?>">
                                                 <button type="submit" name="Modifier" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
@@ -161,6 +162,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'  && isset($_GET['Modifier'])) {
                                                     Supprimer
                                                 </button>
                                             </form>
+                                            </div>
+                                            
                                         <?php } ?>
                                         </td>
                                 </tr>

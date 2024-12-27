@@ -24,7 +24,7 @@ $pays = $pays->readPays();
                 <img src="../src/img/logo.png" alt="Africa Gio Logo" class="w-12 h-12">
                 <span class="text-2xl font-semibold text-white">Africa Gio</span>
             </a>
-            <a href="../public/views/login.php">singup</a>
+            <a href="../public/views/login.php" class="w-24 h-8 font-bold rounded-xl bg-white text-center">singup</a>
          
         </div>
     </nav>

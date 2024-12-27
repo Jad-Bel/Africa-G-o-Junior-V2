@@ -59,7 +59,7 @@ class Pays {
         }
     }
 
-    public function updatePays($id_pays, $nom_pays, $population, $language, $id_continent) {
+    public function updatePays( $nom_pays, $population, $language, $id_continent) {
         try {
             $update_sql = "UPDATE pays 
                         SET nom_pays = :nom_pays, POPULATION = :population, 
@@ -67,7 +67,6 @@ class Pays {
                         WHERE id_pays = :id";
             $stmt = $this->connect->prepare($update_sql);
 
-            $stmt->bindParam(':id', $id_pays, PDO::PARAM_INT);
             $stmt->bindParam(':nom_pays', $nom_pays);
             $stmt->bindParam(':population', $population);
             $stmt->bindParam(':language', $language);

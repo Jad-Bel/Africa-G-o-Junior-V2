@@ -54,6 +54,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+if ($_SERVER["REQUEST_METHOD"] === 'POST' && isset($_POST["save_update"])) {
+    echo $_POST['countryName'];
+    echo $_POST['population'];
+    echo $_POST['language'];
+    echo $_POST['continent'];
+    $result = $pays->updatePays($_POST['countryName'], $_POST["population"], $_POST["language"], $_POST['continent']);
+
+    
+}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['Modifier'])) {
 $id = $_GET['modifer'];
@@ -81,7 +91,7 @@ $paysList = $pays->readPays();
 <nav class="bg-green-600 p-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3">
-                <img src="/placeholder.svg?height=48&width=48" alt="Africa Gio Logo" class="w-12 h-12">
+                <img src="../../src/img/logo.png" alt="Africa Gio Logo" class="w-12 h-12">
                 <span class="text-2xl font-semibold text-white">Africa Gio</span>
             </a>
             <ul class="flex space-x-4">
@@ -188,7 +198,7 @@ $paysList = $pays->readPays();
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="countryName">Nom du Pays</label>
-                                <input type="text" name="countryName" id="countryName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                                <input type="text" name="countryName" value="" id="countryName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
                             </div>
 
                             <div>
@@ -227,17 +237,17 @@ $paysList = $pays->readPays();
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="countryName">Nom du Pays</label>
-                                <input type="text" name="countryName" id="countryName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                                <input type="text" name="countryName" value="<?=  $payes['nom_pays']?>" id="countryName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="population">Population</label>
-                                <input type="number" name="population" id="population" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                                <input type="number" name="population" value="<?=  $payes['POPULATION']?>" id="population" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700" for="population">language</label>
-                                <input type="text" name="language" id="population" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                                <input type="text" name="language" value="<?=  $payes['LANGAUGE_PAYS']?>" id="population" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
                             </div>
 
                             <div>
@@ -248,8 +258,8 @@ $paysList = $pays->readPays();
                             </div>
                             
                             <div class="flex justify-end space-x-3">
-                                <button type="submit" name='save_country' class="px-4 py-2 bg-white text-black hover:text-white hover:bg-green-600 hover:transition-all duration-500">
-                                    Save Country
+                                <button type="submit" name='save_update' class="px-4 py-2 bg-white text-black hover:text-white hover:bg-green-600 hover:transition-all duration-500">
+                                    Save update
                                 </button>
                             </div>
                         </form>
