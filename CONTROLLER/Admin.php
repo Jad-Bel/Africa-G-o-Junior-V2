@@ -1,6 +1,6 @@
 <?php
 
-require_once "../CONTROLLER/person.php";
+require_once  __DIR__ . "/.././CONTROLLER/person.php";
 
 class Admin extends Person{
 
@@ -74,10 +74,23 @@ class Admin extends Person{
             return null;
         }
     }
+    public function deletuser($id){
+        $query = "DELETE FROM utilisateur WHERE id = :id";
+        $stmt = $this->connect->prepare($query);
+
+        
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        
+        if ($stmt->execute()) {
+            return "Utilisateur supprimé avec succès !";
+
+    }
 
 }
+}
 
-$data = new Admin();
-$data = $data->userRolesStat();
+// $data = new Admin();
+// $data = $data->userRolesStat();
 
-var_dump($data);
+// var_dump($data);

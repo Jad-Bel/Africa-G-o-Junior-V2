@@ -172,19 +172,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET'  && isset($_GET['Modifier'])) {
                 </div>
             </div>
 
-                <!-- Formulaire d'Ajout de Ville -->
-                <div class="bg-white shadow-xl">
-                    <div class="p-6 border-b">
-                        <h2 class="text-xl font-semibold">Ajouter une Ville</h2>
-                    </div>
-                    <div class="p-6">
-                        <form class="space-y-6" method="POST" action="villes-admin.html">
-                            <input type="hidden" name="city_id" value="1">
+            <!-- Formulaire d'Ajout de Ville -->
+            <div class="bg-white shadow-xl" id="ajoute_ville">
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-semibold">Ajouter une Ville</h2>
+                </div>
+                <div class="p-6">
 
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700" for="cityName">Nom de la Ville</label>
-                                <input type="text" name="cityName" id="cityName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
-                            </div>
+                    <form class="space-y-6" method="POST" action="">
+
+                        <?php
+                        // Debugging to verify the array structure
+                        // var_dump($modiferVille); 
+
+                        // Safely access the first element of the array
+                        $ville = $modiferVille[0] ?? null;
+                        ?>
+                                <div>
+                            <input type="hidden" value="<?= htmlspecialchars($ville['id_ville'] ?? '') ?>" name="villeid" id="cityName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700" for="cityName">Nom de la Ville</label>
+                            <input type="text" value="<?= htmlspecialchars($ville['nom_ville'] ?? '') ?>" name="villename" id="cityName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                        </div>
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700" for="country">Pays</label>

@@ -12,6 +12,14 @@ class User extends Person
         parent::__construct(); 
     }
 
+
+    public function readUser(){
+        $sql = "SELECT * FROM utilisateur";
+        $stmt = $this->connect->query($sql);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
     public function setUser($name, $email, $telephone, $password)
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["Sign"])) {

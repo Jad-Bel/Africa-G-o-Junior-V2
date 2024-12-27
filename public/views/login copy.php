@@ -47,17 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div> -->
     <div class="main">
         <input type="checkbox" id="chk" aria-hidden="true">
-        <a href="./login copy.php" class="h-10 w-24 bg-slate-500 text-white rounded-xl m-16">is Admin</a>
-        <div class="signup">
-            <form method="post" action="">
-                <label for="chk" aria-hidden="true">Sign up</label>
-                <input class="w-3/5 h-2 bg-gray-300 flex justify-center mx-auto my-5 px-3 py-3 rounded" id="name_user" type="text" name="name_user" placeholder="User name">
-                <input class="w-3/5 h-2 bg-gray-300 flex justify-center mx-auto my-5 px-3 py-3 rounded" id="email" type="email" name="email" placeholder="Email">
-                <input class="w-3/5 h-2 bg-gray-300 flex justify-center mx-auto my-5 px-3 py-3 rounded" id="telephone" type="tel" name="telephone" placeholder="telephone">
-                <input class="w-3/5 h-2 bg-gray-300 flex justify-center mx-auto my-5 px-3 py-3 rounded" onchange="rijexLogin()" id="pswd" type="password" name="pswd" placeholder="Password">
-                <button class="w-3/5 h-10 mx-auto my-2 block text-green-600 bg-gray-300 text-base font-bold mt-8 rounded transition ease-in duration-200 hover:bg-green-600 hover:text-white cursor-pointer" type="submit" name="Sign"> submit</button>
-            </form>
-        </div>
+
+
 
         <div class="login">
             <form method="POST" action="">

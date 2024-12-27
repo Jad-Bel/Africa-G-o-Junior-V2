@@ -27,6 +27,20 @@ class Pays {
         }
     }
 
+    public function modifierpays($id)
+    {
+        try {
+            $sql = "SELECT * FROM pays  WHERE id = :id";
+            $stmt = $this->connect->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $pays = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $pays;
+        } catch (PDOException) {
+            return "Erreur : ";
+        }
+    }
+
     public function addPays($nom_pays, $population, $language, $id_continent) {
         try {
             $insert_sql = "INSERT INTO pays (nom_pays, POPULATION, LANGAUGE_PAYS, ID_CONTINENT) 
@@ -77,16 +91,6 @@ class Pays {
             return "Erreur : " . $e->getMessage();
         }
     }
+
+  
 }
-
-// $id = 41;
-// $nom = 'france';
-//             $population = 11380000;
-//             $language = 'frnacais';
-//             $conitnent = 1;
-
-// $data = new Pays();
-// $result = $data->deletePays(41);
-
-// // var_dump($result);
-// echo $result;

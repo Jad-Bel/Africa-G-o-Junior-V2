@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
 // require "../control/pays.php";
 // $pays = new Pays();
 // var_dump($pays);
@@ -28,7 +28,7 @@
 //    $result = $pays->deletePays($id_pays);
 // }
  
-?>
+?> -->
 
 <?php
 require_once "../control/pays.php"; 
@@ -54,7 +54,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['Modifier'])) {
+$id = $_GET['modifer'];
+
+$payes = $pays->modifierpays($id);
+
+}
+
+
 $paysList = $pays->readPays(); 
+
 ?>
 
 
@@ -134,38 +144,34 @@ $paysList = $pays->readPays();
                                 </tr>
                             </thead>
                             <?php 
-                            foreach($pays as $row){
+                            foreach($paysList as $row){
 
                                 
                             ?>
                             <tbody class="divide-y divide-gray-100">
                                 <tr class="hover:bg-gray-50">
+                                    
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><?= htmlspecialchars($row['nom_pays']) ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"><?= htmlspecialchars($row['POPULATION']) ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600"> <?= htmlspecialchars($row['LANGAUGE_PAYS']) ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Africa</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2 flex">
-                                        <!-- <form action="" method="POST">
+                                        <form action="" method="get">
                                             <input type="hidden" value=" <?= htmlspecialchars($row['id_pays']) ?>" name="modifer">
                                         <button type="submit" name="Modifier" class="inline-flex items-center px-3 py-1.5 border border-green-400 text-sm font-medium text-black bg-white hover:bg-green-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
                                             Modifier
                                         </button>
-                                        </form> -->
+                                        </form>
                                         <form action="" method="POST">
                                             <input type="hidden" name="supr" value="<?= $row['id_pays'] ?>">
                                         <button type="submit" name="Supprimer" class="inline-flex items-center px-3 py-1.5 border border-red-400 text-sm font-medium text-black bg-white hover:bg-red-600 hover:text-white hover:transition-all duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600">
                                         Supprimer
                                         </button>
                                         </form>
+                                        <?php } ?>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">South Africa</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Pretoria</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">59,308,690</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Africa</td>
-                                   
-                                </tr>
+                              
                             </tbody>
                         </table>
                     </div>
@@ -214,6 +220,39 @@ $paysList = $pays->readPays();
         </main>
     </div>
 
+
+
+    <form class="space-y-6" method="POST" action="">
+                            <!-- <input type="hidden" name="country_id" value="1"> -->
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700" for="countryName">Nom du Pays</label>
+                                <input type="text" name="countryName" id="countryName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700" for="population">Population</label>
+                                <input type="number" name="population" id="population" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700" for="population">language</label>
+                                <input type="text" name="language" id="population" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700" for="continent">Continent</label>
+                                <select name="continent" id="continent" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                                    <option value="1">Africa</option>
+                                </select>
+                            </div>
+                            
+                            <div class="flex justify-end space-x-3">
+                                <button type="submit" name='save_country' class="px-4 py-2 bg-white text-black hover:text-white hover:bg-green-600 hover:transition-all duration-500">
+                                    Save Country
+                                </button>
+                            </div>
+                        </form>
     <!-- Footer -->
     <footer class="bg-green-800 text-white py-8 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
