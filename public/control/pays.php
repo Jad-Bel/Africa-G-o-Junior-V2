@@ -23,8 +23,7 @@ class Pays {
             $stmt = $this->connect->query($sql);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-
-            return "Erreur : " . $e->getMessage();
+            return "Erreur Connection: " . $e->getMessage();
         }
     }
 
