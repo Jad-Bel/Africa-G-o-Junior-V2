@@ -32,6 +32,7 @@ class continent {
             $stmt->bindParam(':nom', $name);
             $stmt->bindParam(':nombre', $num_countries);
             return $stmt->execute();
+            echo "added";
         } catch (PDOException $error) {
             return "An error occurred while creating the continent: " . $error->getMessage();
         }
@@ -39,7 +40,7 @@ class continent {
 
     public function update($id_continent, $name, $num_continent) {
         try {
-            $update_sql = "UPDATE continent SET `nom_continent` = :name, `nombre_du_pays` = :nombre WHERE id = :id";
+            $update_sql = "UPDATE continent SET `nom_continent` = :name, `nombre_de_pays` = :nombre WHERE id = :id";
             $stmt = $this->connect->prepare($update_sql);
             $stmt->bindParam(":name", $name);
             $stmt->bindParam(":nombre", $num_continent, PDO::PARAM_INT);
@@ -62,7 +63,20 @@ class continent {
     }
 }
 
-// $data = new continent();
-// $result = $data->readAll();
+
+$id = 3;
+$newName = "Asia";
+$num_countries = 33;
+
+
+$data = new continent();
+$result = $data->update($id, $newName, $num_countries);
+
+    echo $result;
 
 // var_dump($result);
+// if ($result) {
+//     echo "succes";
+// } else {
+//     echo $result;
+// }
