@@ -62,7 +62,7 @@ class Pays {
             return $stmt->execute();
         } catch (PDOException $e) {
             return "Erreur : " . $e->getMessage();
-        }
+        }   
     }
 
     public function deletePays($id_pays) {
