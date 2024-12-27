@@ -51,7 +51,9 @@ class pays{
 
     public function deletePays ($id_pays) {
         $delete_sql = "DELETE FROM pays WHERE id_pays = :id";
-        
+        $stmt = $this->connect->prepare($delete_sql);
+        $stmt->bindParam(":id", $id_pays, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 }
 
