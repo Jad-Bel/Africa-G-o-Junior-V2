@@ -21,7 +21,7 @@ class continent {
     }
 
     public function createContinent($name, $num_countries) {
-        $insert_sql = "INSERT INTO continent (`nom_continent`, `nombre_de_pays`) VALUES (':nom', ':nombre')";
+        $insert_sql = "INSERT INTO continent (`nom_continent`, `nombre_de_pays`) VALUES (:nom, :nombre)";
         $stmt = $this->connect->prepare($insert_sql);
         $stmt->bindParam(':nom', $name);
         $stmt->bindParam(':nombre', $num_countries);
